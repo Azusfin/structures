@@ -1,0 +1,45 @@
+{
+  "name": "@azusfin/structures",
+  "version": "0.1.0",
+  "description": "Implementations of Data Structures",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "build": "rimraf dist && tsc && npm run gen-esm",
+    "gen-esm": "gen-esm-wrapper . ./dist/index.mjs",
+    "docs": "typedoc src/index.ts --excludePrivate --excludeInternal --excludeExternals"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azusfin/structures.git"
+  },
+  "keywords": [
+    "structures",
+    "data-structures",
+    "tree",
+    "bytes",
+    "bits"
+  ],
+  "author": "Azusfin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azusfin/structures/issues"
+  },
+  "homepage": "https://github.com/Azusfin/structures#readme",
+  "devDependencies": {
+    "@azusfin/eslint-config": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^8.11.0",
+    "gen-esm-wrapper": "^1.1.3",
+    "mocha": "^9.2.2",
+    "rimraf": "^3.0.2",
+    "typedoc": "^0.22.13",
+    "typescript": "^4.5.5"
+  }
+}
