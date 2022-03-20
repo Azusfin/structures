@@ -21,7 +21,6 @@ describe("BitSet", function() {
         bitSet.clear(3)
     })
 
-
     it("Flip 7", function() {
         bitSet.flip(6)
     })
