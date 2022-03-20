@@ -6,15 +6,16 @@ https://azusfin.github.io/structures
 
 # Table Of Contents
 - [BitSet](#bitset)
+- [Uint4Array](#uint4array)
 
 ## BitSet
 A static-length array to work with bytes in bit-level
 
-- [Init BitSet](#init-bitset)
-- [Set Bit](#set-bit)
-- [Get Bit](#get-bit)
-- [Flip Bit](#flip-bit)
-- [Clear Bit](#clear-bit)
+- [Init](#init-bitset)
+- [Set](#set-bit)
+- [Get](#get-bit)
+- [Flip](#flip-bit)
+- [Clear](#clear-bit)
 
 ### Init BitSet
 ```js
@@ -52,4 +53,34 @@ bitSet.clear(4)
 
 bitSet.get(31) // false
 bitSet.get(4) // false
+```
+
+## Uint4Array
+An array where each element occupies 4 bits
+
+- [Init](#init-uint4array)
+- [Set](#set-uint4array)
+- [Get](#get-uint4array)
+
+### Init Uint4Array
+```js
+import { Uint4Array } from "@azusfin/structures"
+
+const length = 8
+const array = new Uint4Array(length)
+```
+
+### Set Uint4Array
+```js
+const offset = 3
+array.set(offset, 12)
+array.set(1, 6)
+array.set(5, 3)
+```
+
+### Get Uint4Array
+```js
+array.get(offset) // 12
+array.get(1) // 6
+array.get(5) // 3
 ```
