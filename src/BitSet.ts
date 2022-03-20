@@ -78,6 +78,12 @@ export class BitSet {
         return bits.reverse().join("")
     }
 
+    public * [Symbol.iterator](): Generator<boolean> {
+        for (let i = 0; i < this.size; i++) {
+            yield this.get(i)
+        }
+    }
+
     #bitIndex(bit: number): number {
         return Math.floor(bit / 8)
     }
