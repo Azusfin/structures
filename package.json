@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "test": "mocha",
+    "bench": "node benchmark",
     "build": "rimraf dist && tsc && npm run gen-esm",
     "gen-esm": "gen-esm-wrapper . ./dist/index.mjs",
     "docs": "typedoc src/index.ts --excludePrivate --excludeInternal --excludeExternals"
@@ -35,6 +36,7 @@
     "@azusfin/eslint-config": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
+    "benny": "^3.7.1",
     "eslint": "^8.11.0",
     "gen-esm-wrapper": "^1.1.3",
     "mocha": "^9.2.2",
