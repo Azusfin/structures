@@ -71,18 +71,8 @@ export class BitSet {
     public toString(): string {
         const bits: number[] = []
 
-        let counter = 0
-
-        for (const byte of this.bytes) {
-            for (let i = 0; i < 8 && counter < this.size; i++) {
-                const value = this.#bitValue(i)
-
-                bits.push((byte & value) !== 0 ? 1 : 0)
-
-                counter++
-            }
-
-            if (counter >= this.size) break
+        for (let i = 0; i < this.size; i++) {
+            bits.push(this.get(i) ? 1 : 0)
         }
 
         return bits.reverse().join("")
