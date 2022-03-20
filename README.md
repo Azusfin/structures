@@ -7,6 +7,7 @@ https://azusfin.github.io/structures
 # Table Of Contents
 - [BitSet](#bitset)
 - [Uint4Array](#uint4array)
+- [Int4Array](#int4array)
 
 ## BitSet
 A static-length array to work with bytes in bit-level
@@ -56,7 +57,7 @@ bitSet.get(4) // false
 ```
 
 ## Uint4Array
-An array where each element occupies 4 bits
+An array where each element occupies 4 bit unsigned integer from 0 to 15
 
 - [Init](#init-uint4array)
 - [Set](#set-uint4array)
@@ -82,5 +83,35 @@ array.set(5, 3)
 ```js
 array.get(offset) // 12
 array.get(1) // 6
+array.get(5) // 3
+```
+
+## Int4Array
+A subtype of Uint4Array with support of 4 bit signed integer from -8 to 7
+
+- [Init](#init-int4array)
+- [Set](#set-int4array)
+- [Get](#get-int4array)
+
+### Init Int4Array
+```js
+import { Int4Array } from "@azusfin/structures"
+
+const length = 8
+const array = new Int4Array(length)
+```
+
+### Set Int4Array
+```js
+const offset = 3
+array.set(offset, -4)
+array.set(1, -8)
+array.set(5, 3)
+```
+
+### Get Int4Array
+```js
+array.get(offset) // -4
+array.get(1) // -8
 array.get(5) // 3
 ```
