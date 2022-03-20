@@ -3,5 +3,13 @@
     "overrides": [{
         "files": "**/*.+(ts|tsx)",
         "extends": "@azusfin/eslint-config/typescript/node"
+    }, {
+        "files": "test/**/*.js",
+        "rules": {
+            "no-undef": "off",
+            "func-names": "off",
+            "prefer-arrow-callback": "off",
+            "space-before-function-paren": "off"
+        }
     }]
 }
