@@ -10,10 +10,11 @@
   ],
   "scripts": {
     "test": "mocha",
-    "bench": "node benchmark",
     "build": "rimraf dist && tsc && npm run gen-esm",
     "gen-esm": "gen-esm-wrapper . ./dist/index.mjs",
-    "docs": "typedoc src/index.ts --excludePrivate --excludeInternal --excludeExternals"
+    "docs": "typedoc src/index.ts --excludePrivate --excludeInternal --excludeExternals",
+    "bench:bitset": "node benchmark/bitset",
+    "bench:uint4array": "node benchmark/uint4array"
   },
   "repository": {
     "type": "git",
