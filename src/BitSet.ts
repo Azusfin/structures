@@ -68,6 +68,19 @@ export class BitSet {
         return bitSet
     }
 
+    public slice(start: number, end = this.size): BitSet {
+        const size = end - start
+        const bitSet = new (this.constructor as typeof BitSet)(size)
+
+        for (let i = start; i < end; i++) {
+            if (this.get(i)) {
+                bitSet.set(i - start)
+            }
+        }
+
+        return bitSet
+    }
+
     public toString(): string {
         const bits: number[] = []
 
