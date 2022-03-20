@@ -16,6 +16,8 @@
 </a>
 <ul>
 <li><a href="#bitset">BitSet</a></li>
+<li><a href="#uint4array">Uint4Array</a></li>
+<li><a href="#int4array">Int4Array</a></li>
 </ul>
 
 <a href="#bitset" id="bitset" style="color: inherit; text-decoration: none;">
@@ -23,11 +25,11 @@
 </a>
 <p>A static-length array to work with bytes in bit-level</p>
 <ul>
-<li><a href="#init-bitset">Init BitSet</a></li>
-<li><a href="#set-bit">Set Bit</a></li>
-<li><a href="#get-bit">Get Bit</a></li>
-<li><a href="#flip-bit">Flip Bit</a></li>
-<li><a href="#clear-bit">Clear Bit</a></li>
+<li><a href="#init-bitset">Init</a></li>
+<li><a href="#set-bit">Set</a></li>
+<li><a href="#get-bit">Get</a></li>
+<li><a href="#flip-bit">Flip</a></li>
+<li><a href="#clear-bit">Clear</a></li>
 </ul>
 
 <a href="#init-bitset" id="init-bitset" style="color: inherit; text-decoration: none;">
@@ -59,4 +61,60 @@
 </a>
 <pre><code class="language-js"><span class="hl-2">bitSet</span><span class="hl-1">.</span><span class="hl-7">clear</span><span class="hl-1">(</span><span class="hl-6">31</span><span class="hl-1">)</span><br/><span class="hl-2">bitSet</span><span class="hl-1">.</span><span class="hl-7">clear</span><span class="hl-1">(</span><span class="hl-6">4</span><span class="hl-1">)</span><br/><br/><span class="hl-2">bitSet</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">31</span><span class="hl-1">) </span><span class="hl-8">// false</span><br/><span class="hl-2">bitSet</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">4</span><span class="hl-1">) </span><span class="hl-8">// false</span>
 </code></pre>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/BitSet.html" class="tsd-kind-icon">Bit<wbr/>Set</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+
+<a href="#uint4array" id="uint4array" style="color: inherit; text-decoration: none;">
+  <h2>Uint4Array</h2>
+</a>
+<p>An array where each element occupies 4 bit unsigned integer from 0 to 15</p>
+<ul>
+<li><a href="#init-uint4array">Init</a></li>
+<li><a href="#set-uint4array">Set</a></li>
+<li><a href="#get-uint4array">Get</a></li>
+</ul>
+
+<a href="#init-uint4array" id="init-uint4array" style="color: inherit; text-decoration: none;">
+  <h3>Init Uint4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">Uint4Array</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@azusfin/structures&quot;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">length</span><span class="hl-1"> = </span><span class="hl-6">8</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">array</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-7">Uint4Array</span><span class="hl-1">(</span><span class="hl-2">length</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#set-uint4array" id="set-uint4array" style="color: inherit; text-decoration: none;">
+  <h3>Set Uint4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">offset</span><span class="hl-1"> = </span><span class="hl-6">3</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-2">offset</span><span class="hl-1">, </span><span class="hl-6">12</span><span class="hl-1">)</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">, </span><span class="hl-6">6</span><span class="hl-1">)</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-6">5</span><span class="hl-1">, </span><span class="hl-6">3</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#get-uint4array" id="get-uint4array" style="color: inherit; text-decoration: none;">
+  <h3>Get Uint4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-2">offset</span><span class="hl-1">) </span><span class="hl-8">// 12</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">) </span><span class="hl-8">// 6</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">5</span><span class="hl-1">) </span><span class="hl-8">// 3</span>
+</code></pre>
+
+<a href="#int4array" id="int4array" style="color: inherit; text-decoration: none;">
+  <h2>Int4Array</h2>
+</a>
+<p>A subtype of Uint4Array with support of 4 bit signed integer from -8 to 7</p>
+<ul>
+<li><a href="#init-int4array">Init</a></li>
+<li><a href="#set-int4array">Set</a></li>
+<li><a href="#get-int4array">Get</a></li>
+</ul>
+
+<a href="#init-int4array" id="init-int4array" style="color: inherit; text-decoration: none;">
+  <h3>Init Int4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">Int4Array</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@azusfin/structures&quot;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">length</span><span class="hl-1"> = </span><span class="hl-6">8</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">array</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-7">Int4Array</span><span class="hl-1">(</span><span class="hl-2">length</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#set-int4array" id="set-int4array" style="color: inherit; text-decoration: none;">
+  <h3>Set Int4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">offset</span><span class="hl-1"> = </span><span class="hl-6">3</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-2">offset</span><span class="hl-1">, -</span><span class="hl-6">4</span><span class="hl-1">)</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">, -</span><span class="hl-6">8</span><span class="hl-1">)</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">set</span><span class="hl-1">(</span><span class="hl-6">5</span><span class="hl-1">, </span><span class="hl-6">3</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#get-int4array" id="get-int4array" style="color: inherit; text-decoration: none;">
+  <h3>Get Int4Array</h3>
+</a>
+<pre><code class="language-js"><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-2">offset</span><span class="hl-1">) </span><span class="hl-8">// -4</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">) </span><span class="hl-8">// -8</span><br/><span class="hl-2">array</span><span class="hl-1">.</span><span class="hl-7">get</span><span class="hl-1">(</span><span class="hl-6">5</span><span class="hl-1">) </span><span class="hl-8">// 3</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/BitSet.html" class="tsd-kind-icon">Bit<wbr/>Set</a></li><li class="tsd-kind-class"><a href="classes/Int4Array.html" class="tsd-kind-icon">Int4<wbr/>Array</a></li><li class="tsd-kind-class"><a href="classes/Uint4Array.html" class="tsd-kind-icon">Uint4<wbr/>Array</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
