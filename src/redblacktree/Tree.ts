@@ -1,7 +1,8 @@
+/* eslint-disable max-lines */
 import { Color, Key, Node } from "./Node"
 
 export class Tree<K extends Key, V = unknown> {
-    public root?: Node<K, V>
+    public root: Node<K, V>
     #nilNode: Node<K, V>
 
     constructor(entries?: [K, V][]) {
@@ -11,6 +12,8 @@ export class Tree<K extends Key, V = unknown> {
             color: Color.Black
         } as unknown as Node<K, V>
 
+        this.root = this.#nilNode
+
         if (Array.isArray(entries)) {
             for (const [key, value] of entries) {
                 this.insert(key, value)
@@ -19,9 +22,9 @@ export class Tree<K extends Key, V = unknown> {
     }
 
     public find(key: K): FindResult<V> {
-        let node: Node<K, V> | undefined = this.root
+        let node = this.root
 
-        while (node && node !== this.#nilNode) {
+        while (node !== this.#nilNode) {
             if (node.key === key) {
                 return {
                     found: true,
@@ -30,9 +33,9 @@ export class Tree<K extends Key, V = unknown> {
             }
 
             if (key < node.key) {
-                node = node.left
+                node = node.left!
             } else {
-                node = node.right
+                node = node.right!
             }
         }
 
@@ -40,10 +43,10 @@ export class Tree<K extends Key, V = unknown> {
     }
 
     public insert(key: K, value: V): boolean {
-        let node: Node<K, V> | undefined = this.root
+        let node = this.root
         let parent: Node<K, V> | undefined
 
-        while (node && node !== this.#nilNode) {
+        while (node !== this.#nilNode) {
             if (node.key === key) {
                 return false
             }
@@ -51,9 +54,9 @@ export class Tree<K extends Key, V = unknown> {
             parent = node
 
             if (key < node.key) {
-                node = node.left
+                node = node.left!
             } else {
-                node = node.right
+                node = node.right!
             }
         }
 
@@ -86,10 +89,10 @@ export class Tree<K extends Key, V = unknown> {
     }
 
     public upsert(key: K, value: V): UpsertResult<V> {
-        let node: Node<K, V> | undefined = this.root
+        let node = this.root
         let parent: Node<K, V> | undefined
 
-        while (node && node !== this.#nilNode) {
+        while (node !== this.#nilNode) {
             if (node.key === key) {
                 const oldValue = node.value
                 node.value = value
@@ -103,9 +106,9 @@ export class Tree<K extends Key, V = unknown> {
             parent = node
 
             if (key < node.key) {
-                node = node.left
+                node = node.left!
             } else {
-                node = node.right
+                node = node.right!
             }
         }
 
@@ -135,6 +138,66 @@ export class Tree<K extends Key, V = unknown> {
         }
 
         return { inserted: true }
+    }
+
+    public delete(key: K): DeleteResult<V> {
+        let node = this.root
+
+        while (node !== this.#nilNode) {
+            if (node.key === key) {
+                break
+            }
+
+            if (key < node.key) {
+                node = node.left!
+            } else {
+                node = node.right!
+            }
+        }
+
+        if (node === this.#nilNode) {
+            return { deleted: false }
+        }
+
+        let color = node.color
+        let x: Node<K, V>
+        let y: Node<K, V>
+
+        if (node.left === this.#nilNode) {
+            x = node.right!
+            this.#transplant(node, x)
+        } else if (node.right === this.#nilNode) {
+            x = node.left!
+            this.#transplant(node, x)
+        } else {
+            y = this.#minimum(node.right!)
+            color = y.color
+            x = y.right!
+
+            if (y.parent === node) {
+                x.parent = y
+            } else {
+                this.#transplant(y, node.right!)
+
+                y.right = node.right
+                y.right!.parent = y
+            }
+
+            this.#transplant(node, y)
+
+            y.left = node.left
+            y.left!.parent = y
+            y.color = node.color
+        }
+
+        if (color === Color.Black) {
+            this.#fixDelete(x)
+        }
+
+        return {
+            deleted: true,
+            value: node.value
+        }
     }
 
     #fixInsert(newNode: Node<K, V>): void {
@@ -176,7 +239,7 @@ export class Tree<K extends Key, V = unknown> {
             }
         }
 
-        this.root!.color = Color.Black
+        this.root.color = Color.Black
     }
 
     #leftRotate(x: Node<K, V>): void {
@@ -222,6 +285,104 @@ export class Tree<K extends Key, V = unknown> {
         y.right = x
         x.parent = y
     }
+
+    #transplant(node: Node<K, V>, target: Node<K, V>): void {
+        if (!node.parent) {
+            this.root = target
+        } else if (node.parent.left === node) {
+            node.parent.left = target
+        } else {
+            node.parent.right = target
+        }
+
+        target.parent = node.parent
+    }
+
+    #minimum(node: Node<K, V>): Node<K, V> {
+        let left = node
+
+        while (left.left !== this.#nilNode) {
+            left = left.left!
+        }
+
+        return left
+    }
+
+    #fixDelete(node: Node<K, V>): void {
+        let x = node
+
+        while (x !== this.root && x.color === Color.Black) {
+            if (x === x.parent?.left) {
+                let w = x.parent.right!
+
+                if (w.color === Color.Red) {
+                    w.color = Color.Black
+                    x.parent.color = Color.Red
+
+                    this.#leftRotate(x.parent)
+
+                    w = x.parent.right!
+                }
+
+                if (w.left?.color === Color.Black && w.right?.color === Color.Black) {
+                    w.color = Color.Red
+                    x = x.parent
+                } else {
+                    if (w.right?.color === Color.Black) {
+                        w.left!.color = Color.Black
+                        w.color = Color.Red
+
+                        this.#rightRotate(w)
+
+                        w = x.parent.right!
+                    }
+
+                    w.color = x.parent.color
+                    x.parent.color = Color.Black
+                    w.right!.color = Color.Black
+
+                    this.#leftRotate(x.parent)
+
+                    x = this.root
+                }
+            } else {
+                let w = x.parent!.left!
+
+                if (w.color === Color.Red) {
+                    w.color = Color.Black
+                    x.parent!.color = Color.Red
+
+                    this.#rightRotate(x.parent!)
+
+                    w = x.parent!.left!
+                }
+
+                if (w.left?.color === Color.Black && w.right?.color === Color.Black) {
+                    w.color = Color.Red
+                    x = x.parent!
+                } else {
+                    if (w.left?.color === Color.Black) {
+                        w.right!.color = Color.Black
+                        w.color = Color.Red
+
+                        this.#leftRotate(w)
+
+                        w = x.parent!.left!
+                    }
+
+                    w.color = x.parent!.color
+                    x.parent!.color = Color.Black
+                    w.left!.color = Color.Black
+
+                    this.#rightRotate(x.parent!)
+
+                    x = this.root
+                }
+            }
+        }
+
+        x.color = Color.Black
+    }
 }
 
 export type FindResult<V = unknown> = {
@@ -236,4 +397,11 @@ export type UpsertResult<V = unknown> = {
 } | {
     inserted: false
     oldValue: V
+}
+
+export type DeleteResult<V = unknown> = {
+    deleted: false
+} | {
+    deleted: true
+    value: V
 }
